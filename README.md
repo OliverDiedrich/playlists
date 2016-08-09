@@ -1,6 +1,5 @@
 playlists.py
-
-Transfers your Google Play Music playlists to Spotify
+transfer your Google Play Music playlists to Spotify
 
 This python script reads your own google music playlists (but no playlists shared
 with you) and creates the same(as far as possible) playlists on spotify.
