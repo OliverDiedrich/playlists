@@ -22,13 +22,13 @@ import spotipy.util as util
 import sys
 
 # GMUSIC CREDENTIALS
-USER = 'oliver.die@gmail.com'
-PASS = 'lgrxujqqyvmgavdz'
+USER = ''     # YOUR GOOGLE ACCOUNT
+PASS = ''     # YOUR GOOGLE PASSWORD
 
 # SPOTIFY CREDENTIALS
-USERNAME='oliver.die'                                 # spotify user name
-SCOPE = 'playlist-modify-public playlist-modify-private'  # needed privileges
-CLIENT_ID = '1a41c7d071714551a0306720148a1aa4'        # application specific
+USERNAME=''   # YOUR SPOTIFY ACCOUNT
+SCOPE = 'playlist-modify-public playlist-modify-private'  # privileges
+CLIENT_ID = '1a41c7d071714551a0306720148a1aa4'
 CLIENT_SECRET = '9fba2d4680fe4516bece23120c67379c'
 
 LIMIT = 50    # max number of hits that a spotify search returns
@@ -49,9 +49,9 @@ def filter_hits(hits):
     if not same_artist:
       continue
     if track['name'].lower() != title.lower(): # not the same title?
-      i = title.find(' (')         # Spotify uses "- ..." instead of "(...)"
+      i = title.find(' (')       # Spotify uses "- ..." instead of "(...)"
       if i > 1:
-        if track['name'][:i] != title[:i]:     # same title until first "("?
+        if track['name'][:i] != title[:i]:   # same title until first "("?
           continue
       else:
         continue
@@ -60,9 +60,9 @@ def filter_hits(hits):
 
 
 
-# Mobileclient is the simple gmusicapi interface
+# Mobileclient is the simplest gmusicapi interface
 gm = Mobileclient()
-if not gm.login(USER, PASS, Mobileclient.FROM_MAC_ADDRESS):
+if not gm.login(USER, PASS, '0123456789abcdef'):
   print('gmusic login for', USER, 'failed')
   sys.exit()
 
@@ -145,7 +145,7 @@ for pl in playlists:
     print('----------------------------------')
 
 # print summary
-  print(n_tracks, 'tracks transferred,', len(missing), 'not found on spotify:')
+  print(n_tracks, 'tracks transferred,', len(missing), 'not found:')
   for i in missing:
     print(i)
 
